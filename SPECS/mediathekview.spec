@@ -4,18 +4,18 @@
 %define mediathekview_version 13.2.1
 %define mediathekview_release fc29
 
-Summary:    Application to download shows from German-speaking public broadcasting
-Name:       mediathekview
-Version:    %{mediathekview_version}
-BuildArch:  x86_64
-Release:    %{mediathekview_release}
-License:    GPLv3
-URL:        https://mediathekview.de
-Source0:    MediathekView-%{version}.tar.gz
-Source1:    %{name}.desktop
-BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Summary:       Application to download shows from German-speaking public broadcasting
+Name:          mediathekview
+Version:       %{mediathekview_version}
+ExclusiveArch: x86_64
+Release:       %{mediathekview_release}
+License:       GPLv3
+URL:           https://mediathekview.de
+Source0:       MediathekView-%{version}.tar.gz
+Source1:       %{name}.desktop
+BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
     
-BuildRequires:  desktop-file-utils
+BuildRequires: desktop-file-utils
 
 %description
 Application to download shows from German-speaking public broadcasting.
