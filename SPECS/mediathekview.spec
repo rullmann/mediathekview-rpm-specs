@@ -14,7 +14,8 @@ URL:           https://mediathekview.de
 Source0:       MediathekView-%{version}.tar.gz
 Source1:       %{name}.desktop
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-    
+
+Requires:      java-1.8.0-openjdk
 BuildRequires: desktop-file-utils
 
 %description
