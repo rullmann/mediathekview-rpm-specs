@@ -2,7 +2,7 @@
 %global debug_package %{nil}
 %define mediathekview_home /opt/mediathekview
 %define mediathekview_version 13.2.1
-%define mediathekview_release fc29
+%define mediathekview_release 1
 
 Summary:       Application to download shows from German-speaking public broadcasting
 Name:          mediathekview
@@ -13,7 +13,7 @@ License:       GPLv3
 URL:           https://mediathekview.de
 Source0:       MediathekView-%{version}.tar.gz
 Source1:       %{name}.desktop
-BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot:     %{_tmppath}/%{name}-%{version}-%{mediathekview_release}%{?dist}-root-%(%{__id_u} -n)
 
 Requires:      java-1.8.0-openjdk
 BuildRequires: desktop-file-utils
