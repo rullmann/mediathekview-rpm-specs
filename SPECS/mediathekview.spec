@@ -4,7 +4,7 @@
 %define mediathekview_version 13.2.1
 %define mediathekview_release fc29
 
-Summary:    Application to download from German-speaking public broadcasting services online services
+Summary:    Application to download shows from German-speaking public broadcasting
 Name:       mediathekview
 Version:    %{mediathekview_version}
 BuildArch:  x86_64
@@ -18,7 +18,7 @@ BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  desktop-file-utils
 
 %description
-Application to download from German-speaking public broadcasting services online services.
+Application to download shows from German-speaking public broadcasting.
 
 %prep
 %setup -q -n MediathekView-%{version}
@@ -37,9 +37,11 @@ rm -f %{buildroot}/%{mediathekview_home}/bin/*.bat
 rm -f %{buildroot}/%{mediathekview_home}/bin/*macosx**
 
 # Desktop file
-install -p -m 644 %_sourcedir/%{name}.desktop %{buildroot}/%{mediathekview_home}/%{name}.desktop
+install -d -m 755 %{buildroot}/%{_datadir}/applications/
+install -p -m 644 %_sourcedir/%{name}.desktop %{buildroot}/%{_datadir}/applications/%{name}.desktop
 
-desktop-file-validate %{buildroot}/%{mediathekview_home}/%{name}.desktop
+desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}.desktop
+desktop-file-install %{buildroot}/%{_datadir}/applications/%{name}.desktop --add-category="AudioVideo"
 
 %clean
 rm -rf %{buildroot}
@@ -49,4 +51,4 @@ rm -rf %{buildroot}
 %{mediathekview_home}
 %attr(0777,root,root) %{mediathekview_home}/*.sh
 %attr(0777,root,root) %{mediathekview_home}/bin/*.sh
-%attr(0644,root,root) %{mediathekview_home}/mediathekview.desktop
+%attr(0644,root,root) %{_datadir}/applications/%{name}.desktop
