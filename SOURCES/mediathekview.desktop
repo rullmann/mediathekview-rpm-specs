@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=MediathekView
+Comment=Downloader for German-speaking public broadcasting services online services
+Comment[de]=MediathekView durchsucht die Online-Mediatheken verschiedener Sender und listet die gefundenen Sendungen auf.
+Exec=/opt/mediathekview/MediathekView.sh
+Icon=/opt/mediathekview/MediathekView.ico
+StartupNotify=false
+Terminal=false
+Type=Application
+Keywords=downloader;tv;broadcasting;
+Categories=AudioVideo;

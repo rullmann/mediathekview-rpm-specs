@@ -4,7 +4,7 @@
 %define mediathekview_version 13.2.1
 %define mediathekview_release fc29
 
-Summary:    MeidathekView
+Summary:    Application to download from German-speaking public broadcasting services online services
 Name:       mediathekview
 Version:    %{mediathekview_version}
 BuildArch:  x86_64
@@ -12,10 +12,13 @@ Release:    %{mediathekview_release}
 License:    GPLv3
 URL:        https://mediathekview.de
 Source0:    MediathekView-%{version}.tar.gz
+Source1:    %{name}.desktop
 BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+    
+BuildRequires:  desktop-file-utils
 
 %description
-MediathekView is an application to search, watch and download shows from online service from Germanys public broadcasting services.
+Application to download from German-speaking public broadcasting services online services.
 
 %prep
 %setup -q -n MediathekView-%{version}
@@ -33,15 +36,17 @@ rm -f %{buildroot}/%{mediathekview_home}/bin/*.exe
 rm -f %{buildroot}/%{mediathekview_home}/bin/*.bat
 rm -f %{buildroot}/%{mediathekview_home}/bin/*macosx**
 
+# Desktop file
+install -p -m 644 %_sourcedir/%{name}.desktop %{buildroot}/%{mediathekview_home}/%{name}.desktop
+
+desktop-file-validate %{buildroot}/%{mediathekview_home}/%{name}.desktop
+
 %clean
 rm -rf %{buildroot}
-
-#%pre
 
 %files
 %defattr(-,root,root,0775)
 %{mediathekview_home}
 %attr(0777,root,root) %{mediathekview_home}/*.sh
 %attr(0777,root,root) %{mediathekview_home}/bin/*.sh
-
-#%post
+%attr(0644,root,root) %{mediathekview_home}/mediathekview.desktop
