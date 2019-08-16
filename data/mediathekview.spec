@@ -1,8 +1,10 @@
 %define __jar_repack %{nil}
 %global debug_package %{nil}
 %define mediathekview_home /opt/mediathekview
-%define mediathekview_version 13.2.1
+%define mediathekview_version 13.3.0
 %define mediathekview_release 1
+
+%undefine _disable_source_fetch
 
 Summary:       Application to download shows from German-speaking public broadcasting
 Name:          mediathekview
@@ -11,31 +13,25 @@ ExclusiveArch: x86_64
 Release:       %{mediathekview_release}
 License:       GPLv3
 URL:           https://mediathekview.de
-Source0:       MediathekView-%{version}.tar.gz
+Source0:       https://download.mediathekview.de/stabil/MediathekView-13.3.0-linux.tar.gz
+%define        SHA512SUM0 76455f4217c9a285455d86d79cc03afb11951060f9dbb1d1e3a29cce415de09e96963f1a637b26b157474b968741a68f5cb95f542916c791af64871d4ad6b62d
 Source1:       %{name}.desktop
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{mediathekview_release}%{?dist}-root-%(%{__id_u} -n)
 
-Requires:      java-1.8.0-openjdk
+Requires:      java-11-openjdk
 BuildRequires: desktop-file-utils
 
 %description
 Application to download shows from German-speaking public broadcasting.
 
 %prep
-%setup -q -n MediathekView-%{version}
+%setup -q -c
 
 %build
 
 %install
 install -d -m 755 %{buildroot}/%{mediathekview_home}/
 cp -R * %{buildroot}/%{mediathekview_home}/
-
-# Remove useless executable files
-rm -f %{buildroot}/%{mediathekview_home}/*.command
-rm -f %{buildroot}/%{mediathekview_home}/*.exe
-rm -f %{buildroot}/%{mediathekview_home}/bin/*.exe
-rm -f %{buildroot}/%{mediathekview_home}/bin/*.bat
-rm -f %{buildroot}/%{mediathekview_home}/bin/*macosx**
 
 # Desktop file
 install -d -m 755 %{buildroot}/%{_datadir}/applications/
